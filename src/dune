@@ -1,0 +1,15 @@
+(library
+ (name digest_map)
+ (wrapped false)
+ (synopsis "Compute a map from filepath to hash digest of file contents")
+ (modules digest_map)
+ (public_name static-file-digest)
+ (flags :standard -safe-string))
+
+(executable
+ (name main)
+ (modules main)
+ (public_name static-file-digest)
+ (libraries
+  cmdliner
+  digest_map))

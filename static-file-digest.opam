@@ -1,0 +1,39 @@
+opam-version: "2.0"
+maintainer:   "Sabine Schmaltz"
+authors:      ["Sabine Schmaltz"]
+homepage:     "https://github.com/sabine/static-file-digest"
+bug-reports:  "https://github.com/sabine/static-file-digest/issues"
+license:      "ISC"
+dev-repo:     "git+https://github.com/sabine/static-file-digest.git"
+tags:         ["file" "digest"]
+
+depends: [
+  "ocaml" {>= "4.14.0"}
+  "cmdliner" {>= "1.1"}
+  "dune" {>= "2.5"}
+]
+conflicts: []
+build: [
+  ["dune" "subst"] {dev}
+  [
+    "dune"
+    "build"
+    "-p"
+     name
+    "-j"
+    jobs
+    "@install"
+    "@runtest" {with-test}
+    "@doc" {with-doc}
+  ]
+]
+synopsis: "Compute hash digest for every file in a directory."
+description: """
+Compute a hash digest for every file in a directory.
+
+The included command-line tool emits an OCaml module exposing a
+function that returns the digest for a given filepath.
+
+Intended use is for web servers that serve assets behind cache-busting
+URLs in order to use the `Cache-Control: immutable` header.
+"""
